@@ -12,18 +12,15 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
-        boolean flag = false;
         for (int i = 0; i < count_resume; i++) {
             if (storage[i].uuid.equals(r.uuid)) {
-                flag = true;
+                System.out.println("Такое резюме уже есть!");
+                return;
             }
         }
-        if (flag) {
-            System.out.println("Такое резюме уже есть!");
-        } else {
-            storage[count_resume] = r;
-            count_resume++;
-        }
+
+        storage[count_resume] = r;
+        count_resume++;
     }
 
     Resume get(String uuid) {
@@ -41,10 +38,11 @@ public class ArrayStorage {
                 for (int j = i; j < count_resume; j++) {
                     storage[j] = storage[j + 1];
                 }
-                break;
+                count_resume--;
+                return;
             }
         }
-        count_resume--;
+
     }
 
     /**
