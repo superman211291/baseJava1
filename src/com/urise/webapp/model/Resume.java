@@ -12,8 +12,9 @@ public class Resume {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public Resume setUuid(String uuid) {
         this.uuid = uuid;
+        return this;
     }
 
     @Override

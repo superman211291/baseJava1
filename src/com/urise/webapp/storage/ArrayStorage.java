@@ -15,6 +15,8 @@ public class ArrayStorage {
         int resumeExist = chekResumeExist(resume);
         if (resumeExist != -1) {
             storage[resumeExist] = resume;
+        } else {
+            printResumeNotExist();
         }
     }
 
@@ -24,7 +26,11 @@ public class ArrayStorage {
     }
 
     public void save(Resume r) {
-        if (chekResumeExist(r) == -1 || !chekStorageOverflow()) {
+        if (chekResumeExist(r) != -1) {
+            printResumeExist();
+        } else if (chekStorageOverflow()) {
+            printStorageOverflow();
+        } else {
             storage[size] = r;
             size++;
         }
@@ -34,6 +40,8 @@ public class ArrayStorage {
         int resumeExist = chekResumeExist(uuid);
         if (resumeExist != -1) {
             return storage[resumeExist];
+        } else {
+            printResumeNotExist();
         }
         return null;
     }
@@ -43,6 +51,8 @@ public class ArrayStorage {
         if (resumeExist != -1) {
             relocateStorage(resumeExist);
             size--;
+        } else {
+            printResumeNotExist();
         }
     }
 
@@ -60,28 +70,24 @@ public class ArrayStorage {
     private int chekResumeExist(Resume resume) {
         for (int i = 0; i < size; i++) {
             if (storage[i].getUuid().equals(resume.getUuid())) {
-                System.err.println("Такое резюме уже есть!");
                 return i;
             }
         }
-        System.err.println("Такое резюме отсутствует!");
         return -1;
     }
 
     private int chekResumeExist(String uuid) {
         for (int i = 0; i < size; i++) {
             if (storage[i].getUuid().equals(uuid)) {
-                System.err.println("Такое резюме уже есть!");
                 return i;
             }
         }
-        System.err.println("Такое резюме отсутствует!");
         return -1;
     }
 
     private boolean chekStorageOverflow() {
         if (size == storage.length) {
-            System.err.println("Отсутствует место для сохранения!");
+            printStorageOverflow();
             return true;
         }
         return false;
@@ -92,4 +98,17 @@ public class ArrayStorage {
             storage[j] = storage[j + 1];
         }
     }
+
+    private void printStorageOverflow() {
+        System.err.println("Отсутствует место для сохранения!");
+    }
+
+    private void printResumeExist() {
+        System.err.println("Такое резюме уже есть!");
+    }
+
+    private void printResumeNotExist() {
+        System.err.println("Такого резюме нет!");
+    }
+
 }

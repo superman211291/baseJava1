@@ -31,6 +31,10 @@ public class MainTestArrayStorage {
         printAll();
 
         System.out.println("Size: " + ARRAY_STORAGE.size());
+
+        for (int i = 0; i < 10001; i++) {
+            ARRAY_STORAGE.save(new Resume().setUuid("name" + i));
+        }
     }
 
     static void printAll() {
