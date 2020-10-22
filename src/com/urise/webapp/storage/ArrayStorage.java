@@ -12,7 +12,7 @@ public class ArrayStorage {
     private int size = 0;
 
     public void update(Resume resume) {
-        int resumeExist = chekResumeExist(resume);
+        int resumeExist = chekResumeExist(resume.getUuid());
         if (resumeExist != -1) {
             storage[resumeExist] = resume;
         } else {
@@ -26,7 +26,7 @@ public class ArrayStorage {
     }
 
     public void save(Resume r) {
-        if (chekResumeExist(r) != -1) {
+        if (chekResumeExist(r.getUuid()) != -1) {
             printResumeExist();
         } else if (chekStorageOverflow()) {
             printStorageOverflow();
@@ -67,14 +67,14 @@ public class ArrayStorage {
         return size;
     }
 
-    private int chekResumeExist(Resume resume) {
-        for (int i = 0; i < size; i++) {
-            if (storage[i].getUuid().equals(resume.getUuid())) {
-                return i;
-            }
-        }
-        return -1;
-    }
+//    private int chekResumeExist(Resume resume) {
+//        for (int i = 0; i < size; i++) {
+//            if (storage[i].getUuid().equals(resume.getUuid())) {
+//                return i;
+//            }
+//        }
+//        return -1;
+//    }
 
     private int chekResumeExist(String uuid) {
         for (int i = 0; i < size; i++) {
