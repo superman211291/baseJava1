@@ -21,7 +21,7 @@ public class ArrayStorage {
     }
 
     public void clear() {
-        Arrays.fill(storage,0,size,null);
+        Arrays.fill(storage, 0, size, null);
         size = 0;
     }
 
@@ -94,9 +94,7 @@ public class ArrayStorage {
     }
 
     private void relocateStorage(int numElement) {
-        for (int j = numElement; j < size; j++) {
-            storage[j] = storage[j + 1];
-        }
+        storage[numElement] = storage[size - 1];
     }
 
     private void printStorageOverflow() {
