@@ -5,7 +5,7 @@ import com.urise.webapp.model.Resume;
 import java.util.Arrays;
 
 public abstract class AbstractArrayStorage implements Storage {
-    protected static final int STORAGE_LIMIT = 10000;
+    protected static final int STORAGE_LIMIT = 4;
 
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int size = 0;
@@ -44,7 +44,7 @@ public abstract class AbstractArrayStorage implements Storage {
             if (index < 0) {
                 if (size < storage.length) {
                     System.out.println(uuid + " Отсутствует в базе!");
-                    return -index - 1;
+                    return index;
                 } else {
                     System.out.println(uuid + "Нет свободной памяти!");
                     return index;
@@ -54,7 +54,8 @@ public abstract class AbstractArrayStorage implements Storage {
                 return index;
             }
         }
-        return 0;
+        System.out.println(uuid + " Отсутствует в базе!");
+        return -1;
     }
 
     protected abstract int getIndex(String uuid);
