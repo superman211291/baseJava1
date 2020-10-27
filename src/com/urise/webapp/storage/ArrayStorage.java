@@ -7,14 +7,7 @@ import com.urise.webapp.model.Resume;
  */
 public class ArrayStorage extends AbstractArrayStorage {
 
-    public void update(Resume r) {
-        int index = getIndex(r.getUuid());
-        if (index == -1) {
-            System.out.println("Resume " + r.getUuid() + " not exist");
-        } else {
-            storage[index] = r;
-        }
-    }
+
 
     public void save(Resume r) {
         if (getIndex(r.getUuid()) != -1) {
@@ -38,6 +31,7 @@ public class ArrayStorage extends AbstractArrayStorage {
         }
     }
 
+    @Override
     protected int getIndex(String uuid) {
         for (int i = 0; i < size; i++) {
             if (uuid.equals(storage[i].getUuid())) {
@@ -46,4 +40,6 @@ public class ArrayStorage extends AbstractArrayStorage {
         }
         return -1;
     }
+
+
 }

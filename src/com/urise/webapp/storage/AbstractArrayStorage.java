@@ -15,6 +15,15 @@ public abstract class AbstractArrayStorage implements Storage {
         size = 0;
     }
 
+    public void update(Resume r) {
+        int index = getIndex(r.getUuid());
+        if (index < 0) {
+            System.out.println("Resume " + r.getUuid() + " not exist");
+        } else {
+            storage[index] = r;
+        }
+    }
+
     public int size() {
         return size;
     }
@@ -32,6 +41,26 @@ public abstract class AbstractArrayStorage implements Storage {
         return Arrays.copyOfRange(storage, 0, size);
     }
 
+    protected int checkResume(String uuid) {
+        if (size > 0) {
+            int index = getIndex(uuid);
+            if (index < 0) {
+                if (size < storage.length) {
+                    System.out.println(uuid + " Отсутствует в базе!");
+                    return -index - 1;
+                } else {
+                    System.out.println(uuid + "Нет свободной памяти!");
+                    return index;
+                }
+            } else {
+                System.out.println(uuid + " Данный элемент присутсвует в базе!");
+                return index;
+            }
+        }
+        return 0;
+    }
+
     protected abstract int getIndex(String uuid);
+
 }
 
