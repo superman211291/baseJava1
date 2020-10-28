@@ -9,8 +9,7 @@ public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
     public void save(Resume r) {
-        int index = -checkResume(r.getUuid())-1;
-        if (index >= 0 && size < storage.length) {
+        if (checkResume1(r.getUuid())) {
             storage[size] = r;
             size++;
         }
@@ -18,9 +17,8 @@ public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
     public void delete(String uuid) {
-        int index = -checkResume(uuid);
-        if (index >= 0) {
-            storage[index] = storage[size - 1];
+        if (!checkResume1(uuid)) {
+            storage[getIndex(uuid)] = storage[size - 1];
             storage[size - 1] = null;
             size--;
         }
