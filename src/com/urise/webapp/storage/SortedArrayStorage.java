@@ -7,12 +7,12 @@ import java.util.Arrays;
 public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
-    protected void shiftElement() {
+    protected void shiftElement(int index) {
         System.arraycopy(storage, index, storage, index + 1, size - index);
     }
 
     @Override
-    protected void backspaceElement() {
+    protected void backspaceElement(int index) {
         System.arraycopy(storage, index + 1, storage, index, size - 1 - index);
     }
 

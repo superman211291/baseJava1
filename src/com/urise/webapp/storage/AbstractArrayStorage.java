@@ -9,12 +9,12 @@ public abstract class AbstractArrayStorage implements Storage {
 
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int size = 0;
-    protected int index;
+
 
     public void save(Resume r) {
         if (checkResume1(r.getUuid())) {
-            index = -getIndex(r.getUuid()) - 1;
-            shiftElement();
+            int index = -getIndex(r.getUuid()) - 1;
+            shiftElement(index);
             storage[index] = r;
             size++;
             System.out.println(r.getUuid() + " сохранен!");
@@ -22,9 +22,9 @@ public abstract class AbstractArrayStorage implements Storage {
     }
 
     public void delete(String uuid) {
-        if (!checkResume1(uuid)) {
-            index = getIndex(uuid);
-            backspaceElement();
+        if (!checkNotExist(uuid)) {
+            int index = getIndex(uuid);
+            backspaceElement(index);
             storage[size - 1] = null;
             size--;
             System.out.println(uuid + " удален!");
@@ -38,7 +38,7 @@ public abstract class AbstractArrayStorage implements Storage {
     }
 
     public void update(Resume r) {
-        if (!checkResume1(r.getUuid())) {
+        if (!checkNotExist(r.getUuid())) {
             storage[getIndex(r.getUuid())] = r;
         }
     }
@@ -48,13 +48,12 @@ public abstract class AbstractArrayStorage implements Storage {
     }
 
     public Resume get(String uuid) {
-
-        if (checkNotExist(uuid)) {
-            return null;
-        } else if (getIndex(uuid) != 0) {
-            return storage[getIndex(uuid) - 1];
+        int index = getIndex(uuid);
+        if (index < 0) {
+            return  null;
         }
-        return storage[getIndex(uuid)];
+        return storage[index];
+
     }
 
     public Resume[] getAll() {
@@ -83,9 +82,9 @@ public abstract class AbstractArrayStorage implements Storage {
         return true;
     }
 
-    protected abstract void shiftElement();
+    protected abstract void shiftElement(int index);
 
-    protected abstract void backspaceElement();
+    protected abstract void backspaceElement(int index);
 
     protected abstract int getIndex(String uuid);
 

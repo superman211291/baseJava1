@@ -6,12 +6,12 @@ package com.urise.webapp.storage;
 public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
-    protected void shiftElement() {
-        index = size;
+    protected void shiftElement(int index) {
+        System.arraycopy(storage, index, storage, index + 1, size - index);
     }
 
     @Override
-    protected void backspaceElement() {
+    protected void backspaceElement(int index) {
         storage[index] = storage[size - 1];
     }
 
