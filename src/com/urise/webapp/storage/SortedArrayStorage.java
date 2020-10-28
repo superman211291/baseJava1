@@ -13,6 +13,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
             System.arraycopy(storage, index, storage, index + 1, size - index);
             storage[index] = r;
             size++;
+            System.out.println(r.getUuid() + " сохранен!");
         }
     }
 
@@ -23,6 +24,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
             System.arraycopy(storage, index + 1, storage, index, size - 1 - index);
             Arrays.fill(storage, size - 1, size, null);
             size--;
+            System.out.println(uuid + " удален!");
         }
 
     }
