@@ -22,7 +22,6 @@ public class SortedArrayStorage extends AbstractArrayStorage {
         if (!checkResume1(uuid)) {
             int index = getIndex(uuid);
             System.arraycopy(storage, index + 1, storage, index, size - 1 - index);
-            Arrays.fill(storage, size - 1, size, null);
             size--;
             System.out.println(uuid + " удален!");
         }
