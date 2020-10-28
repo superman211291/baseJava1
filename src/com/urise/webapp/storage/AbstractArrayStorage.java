@@ -12,18 +12,23 @@ public abstract class AbstractArrayStorage implements Storage {
     protected int index;
 
     public void save(Resume r) {
-
-        storage[index] = r;
-        size++;
-        System.out.println(r.getUuid() + " сохранен!");
-
+        if (checkResume1(r.getUuid())) {
+            index = -getIndex(r.getUuid()) - 1;
+            shiftElement();
+            storage[index] = r;
+            size++;
+            System.out.println(r.getUuid() + " сохранен!");
+        }
     }
 
     public void delete(String uuid) {
-
-        storage[size - 1] = null;
-        size--;
-        System.out.println(uuid + " удален!");
+        if (!checkResume1(uuid)) {
+            index = getIndex(uuid);
+            backspaceElement();
+            storage[size - 1] = null;
+            size--;
+            System.out.println(uuid + " удален!");
+        }
 
     }
 
@@ -77,6 +82,10 @@ public abstract class AbstractArrayStorage implements Storage {
         }
         return true;
     }
+
+    protected abstract void shiftElement();
+
+    protected abstract void backspaceElement();
 
     protected abstract int getIndex(String uuid);
 
