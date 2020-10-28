@@ -9,7 +9,23 @@ public abstract class AbstractArrayStorage implements Storage {
 
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int size = 0;
+    protected int index;
 
+    public void save(Resume r) {
+
+        storage[index] = r;
+        size++;
+        System.out.println(r.getUuid() + " сохранен!");
+
+    }
+
+    public void delete(String uuid) {
+
+        storage[size - 1] = null;
+        size--;
+        System.out.println(uuid + " удален!");
+
+    }
 
     public void clear() {
         Arrays.fill(storage, 0, size, null);

@@ -10,8 +10,8 @@ public class ArrayStorage extends AbstractArrayStorage {
     @Override
     public void save(Resume r) {
         if (checkResume1(r.getUuid())) {
-            storage[size] = r;
-            size++;
+            index = size;
+            super.save(r);
         }
     }
 
