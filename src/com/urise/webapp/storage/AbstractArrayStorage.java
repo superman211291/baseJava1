@@ -12,24 +12,27 @@ public abstract class AbstractArrayStorage implements Storage {
 
 
     public void save(Resume r) {
-        if (checkResume1(r.getUuid())) {
-            int index = -getIndex(r.getUuid()) - 1;
-            shiftElement(index);
-            storage[index] = r;
+        String uuid = r.getUuid();
+        int index = getIndex(uuid);
+        if (checkMemory(uuid) && index < 0) {
+            storage[shiftElement(index)] = r;
             size++;
             System.out.println(r.getUuid() + " сохранен!");
+        } else {
+            printExist(uuid);
         }
     }
 
     public void delete(String uuid) {
-        if (!checkNotExist(uuid)) {
-            int index = getIndex(uuid);
+        int index = getIndex(uuid);
+        if (index >= 0) {
             backspaceElement(index);
             storage[size - 1] = null;
             size--;
             System.out.println(uuid + " удален!");
+        } else {
+            printNotExist(uuid);
         }
-
     }
 
     public void clear() {
@@ -38,8 +41,11 @@ public abstract class AbstractArrayStorage implements Storage {
     }
 
     public void update(Resume r) {
-        if (!checkNotExist(r.getUuid())) {
-            storage[getIndex(r.getUuid())] = r;
+        int index = getIndex(r.getUuid());
+        if (index >= 0) {
+            storage[index] = r;
+        } else {
+            printNotExist(r.getUuid());
         }
     }
 
@@ -49,29 +55,17 @@ public abstract class AbstractArrayStorage implements Storage {
 
     public Resume get(String uuid) {
         int index = getIndex(uuid);
-        if (index < 0) {
-            return  null;
+        if (index >= 0) {
+            return storage[index];
+        } else {
+            printNotExist(uuid);
         }
-        return storage[index];
+        return null;
 
     }
 
     public Resume[] getAll() {
         return Arrays.copyOfRange(storage, 0, size);
-    }
-
-    protected boolean checkResume1(String uuid) {
-        return checkNotExist(uuid) && checkMemory(uuid);
-    }
-
-    protected boolean checkNotExist(String uuid) {
-        int index = getIndex(uuid);
-        if (index >= 0) {
-            System.out.println(uuid + " Данный элемент присутсвует в базе!");
-            return false;
-        }
-        System.out.println(uuid + " Отсутствует в базе!");
-        return true;
     }
 
     protected boolean checkMemory(String uuid) {
@@ -82,7 +76,16 @@ public abstract class AbstractArrayStorage implements Storage {
         return true;
     }
 
-    protected abstract void shiftElement(int index);
+    private void printNotExist(String uuid){
+        System.out.println(uuid + " отсутствует в базе!");
+    }
+    private void printExist(String uuid){
+        System.out.println(uuid + " присутствует в базе!");
+    }
+
+
+
+    protected abstract int shiftElement(int index);
 
     protected abstract void backspaceElement(int index);
 

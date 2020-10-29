@@ -6,8 +6,8 @@ package com.urise.webapp.storage;
 public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
-    protected void shiftElement(int index) {
-        System.arraycopy(storage, index, storage, index + 1, size - index);
+    protected int shiftElement(int index) {
+        return size;
     }
 
     @Override
