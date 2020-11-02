@@ -47,7 +47,7 @@ public abstract class AbstractArrayStorage implements Storage {
         if (index >= 0) {
             storage[index] = r;
         } else {
-            printNotExist(r.getUuid());
+            throw new NotExistStorageException(r.getUuid());
         }
     }
 
@@ -78,10 +78,10 @@ public abstract class AbstractArrayStorage implements Storage {
     }
 
     private void printNotExist(String uuid){
-        System.out.println(uuid + " отсутствует в базе!");
+        System.out.println();
     }
     private void printExist(String uuid){
-        System.out.println(uuid + " присутствует в базе!");
+        System.out.println();
     }
 
 

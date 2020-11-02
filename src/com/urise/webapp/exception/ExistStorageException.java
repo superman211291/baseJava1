@@ -2,6 +2,6 @@ package com.urise.webapp.exception;
 
 public class ExistStorageException extends StorageException {
     public ExistStorageException(String uuid) {
-        super(uuid);
+        super(uuid,uuid + " присутствует в базе!");
     }
 }
