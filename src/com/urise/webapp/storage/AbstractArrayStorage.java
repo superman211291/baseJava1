@@ -2,12 +2,13 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
+import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
 
 public abstract class AbstractArrayStorage implements Storage {
-    protected static final int STORAGE_LIMIT = 4;
+    protected static final int STORAGE_LIMIT = 10000;
 
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int size = 0;
@@ -71,18 +72,12 @@ public abstract class AbstractArrayStorage implements Storage {
 
     protected boolean checkMemory(String uuid) {
         if (size == storage.length) {
-            System.out.println(uuid + "Нет свободной памяти!");
-            return false;
+            throw new StorageException(uuid,uuid + "Нет свободной памяти!");
         }
         return true;
     }
 
-    private void printNotExist(String uuid){
-        System.out.println();
-    }
-    private void printExist(String uuid){
-        System.out.println();
-    }
+
 
 
 
