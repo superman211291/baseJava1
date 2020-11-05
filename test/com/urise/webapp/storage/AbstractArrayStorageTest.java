@@ -13,9 +13,9 @@ public abstract class AbstractArrayStorageTest {
     protected static final String UUID_1 = "uuid1";
     protected static final String UUID_2 = "uuid2";
     protected static final String UUID_3 = "uuid3";
-    private final Resume resume1 = new Resume(UUID_1);
-    private final Resume resume2 = new Resume(UUID_2);
-    private final Resume resume3 = new Resume(UUID_3);
+    private static final Resume resume1 = new Resume(UUID_1);
+    private static final Resume resume2 = new Resume(UUID_2);
+    private static final Resume resume3 = new Resume(UUID_3);
 
     public AbstractArrayStorageTest(Storage storage) {
         this.storage = storage;
@@ -41,12 +41,12 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void delete() {
-        storage.delete(UUID_2);
+
         try {
-            storage.get(UUID_2);
-            Assert.fail();
-        } catch (NotExistStorageException ex) {
+            storage.delete(UUID_2);
+            } catch (NotExistStorageException ex) {
             System.out.println(ex.getMessage());
+            Assert.fail();
         }
 
     }

@@ -18,6 +18,9 @@ public class SortedArrayStorageTest extends AbstractArrayStorageTest {
         expected.save(new Resume(UUID_2));
         expected.save(new Resume(UUID_3));
 
-        Assert.assertArrayEquals(expected.getAll(), storage.getAll());
+        Resume[] resumeExpected = expected.getAll();
+        Resume[] resumeActual = storage.getAll();
+
+        Assert.assertArrayEquals(resumeExpected,resumeActual );
     }
 }
