@@ -9,17 +9,11 @@ public class ArrayStorageTest extends AbstractArrayStorageTest {
     public ArrayStorageTest() {
         super(new ArrayStorage());
     }
+
     @Test
     public void getAll() throws Exception {
-        Storage expected = new ArrayStorage();
-
-        expected.save(new Resume(UUID_1));
-        expected.save(new Resume(UUID_2));
-        expected.save(new Resume(UUID_3));
-
-        Resume[] resumeExpected = expected.getAll();
-        Resume[] resumeActual = storage.getAll();
-
-        Assert.assertArrayEquals(resumeExpected,resumeActual );
+        Resume[] resumeExpected = storage.getAll();
+        Resume[] resumeActual = new Resume[]{resume1, resume2, resume3};
+        Assert.assertArrayEquals(resumeExpected, resumeActual);
     }
 }
