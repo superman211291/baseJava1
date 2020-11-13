@@ -1,40 +1,21 @@
 package com.urise.webapp.storage;
 
-import com.urise.webapp.exception.ExistStorageException;
-import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
 
-public abstract class AbstractArrayStorage implements Storage {
+public abstract class AbstractArrayStorage extends AbstractStorage {
     protected static final int STORAGE_LIMIT = 10000;
 
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
-    protected int size = 0;
 
+    protected int size = 0;
 
     public void save(Resume r) {
         String uuid = r.getUuid();
-        int index = getIndex(uuid);
-        if (checkMemory(uuid) && index < 0) {
-            storage[shiftElement(index)] = r;
-            size++;
-            System.out.println(r.getUuid() + " сохранен!");
-        } else {
-            throw new ExistStorageException(uuid);
-        }
-    }
-
-    public void delete(String uuid) {
-        int index = getIndex(uuid);
-        if (index >= 0) {
-            backspaceElement(index);
-            storage[size - 1] = null;
-            size--;
-            System.out.println(uuid + " удален!");
-        } else {
-            throw new NotExistStorageException(uuid);
+       if (checkMemory(uuid) ) {
+           super.save(r);
         }
     }
 
@@ -43,27 +24,8 @@ public abstract class AbstractArrayStorage implements Storage {
         size = 0;
     }
 
-    public void update(Resume r) {
-        int index = getIndex(r.getUuid());
-        if (index >= 0) {
-            storage[index] = r;
-        } else {
-            throw new NotExistStorageException(r.getUuid());
-        }
-    }
-
     public int size() {
         return size;
-    }
-
-    public Resume get(String uuid) {
-        int index = getIndex(uuid);
-        if (index >= 0) {
-            return storage[index];
-        } else {
-            throw new NotExistStorageException(uuid);
-        }
-
     }
 
     public Resume[] getAll() {
@@ -78,14 +40,32 @@ public abstract class AbstractArrayStorage implements Storage {
     }
 
 
+    @Override
+    protected Resume getResume(int index) {
+        return storage[index];
+    }
 
+    @Override
+    protected void saveResume(Resume r) {
+        storage[shiftElement(getIndex(r.getUuid()))] = r;
+        size++;
+    }
 
+    @Override
+    protected void updateResume(Resume r) {
+        storage[getIndex(r.getUuid())] = r;
+    }
+
+    @Override
+    protected void deleteResume(int index) {
+        backspaceElement(index);
+        storage[size - 1] = null;
+        size--;
+    }
 
     protected abstract int shiftElement(int index);
 
     protected abstract void backspaceElement(int index);
-
-    protected abstract int getIndex(String uuid);
 
 }
 
