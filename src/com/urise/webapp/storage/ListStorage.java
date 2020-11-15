@@ -51,13 +51,13 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected void saveResume( Resume r) {
+    protected void saveResume( int index, Resume r) {
         listResume.add(r);
     }
 
     @Override
-    protected void updateResume(Resume r) {
-        listResume.set(getIndex(r.getUuid()),r);
+    protected void updateResume(int index, Resume r) {
+        listResume.set(index,r);
     }
 
     @Override

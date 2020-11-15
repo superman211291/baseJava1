@@ -46,14 +46,14 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    protected void saveResume(Resume r) {
-        storage[shiftElement(getIndex(r.getUuid()))] = r;
+    protected void saveResume(int index, Resume r) {
+        storage[shiftElement(index)] = r;
         size++;
     }
 
     @Override
-    protected void updateResume(Resume r) {
-        storage[getIndex(r.getUuid())] = r;
+    protected void updateResume(int index, Resume r) {
+        storage[index] = r;
     }
 
     @Override
