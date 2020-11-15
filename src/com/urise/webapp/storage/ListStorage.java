@@ -22,11 +22,13 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     public Resume[] getAll() {
-        Resume[] newResume = new Resume[listResume.size()];
-        for (int i = 0; i < listResume.size(); i++) {
-            newResume[i] = listResume.get(i);
-        }
-        return newResume;
+//        Resume[] newResume = new Resume[listResume.size()];
+//        for (int i = 0; i < listResume.size(); i++) {
+//            newResume[i] = listResume.get(i);
+//        }
+//        return newResume;
+        Resume[] resumes = new Resume[listResume.size()];
+        return  listResume.toArray(resumes);
     }
 
     @Override
