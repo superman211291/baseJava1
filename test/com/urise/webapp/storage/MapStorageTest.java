@@ -16,9 +16,9 @@ public class MapStorageTest extends AbstractStorageTest {
     @Test
     public void getAll() {
         HashSet<Resume> resumeExpected = new HashSet<>(Arrays.asList(storage.getAll()));
-        HashSet<Resume> resumeActual = new HashSet<>(Arrays.asList(resume1,  resume2, resume3));
-        Assert.assertEquals(3,storage.size());
-        Assert.assertEquals( resumeExpected,resumeActual);
+        HashSet<Resume> resumeActual = new HashSet<>(Arrays.asList(resume1, resume2, resume3));
+        Assert.assertEquals(3, storage.size());
+        Assert.assertEquals(resumeExpected, resumeActual);
 //        if(!resumeExpected.retainAll(resumeActual)){
 //            Assert.fail();
 //        }
