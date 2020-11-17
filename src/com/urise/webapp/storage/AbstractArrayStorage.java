@@ -12,13 +12,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
     protected int size = 0;
 
-    public void save(Resume r) {
-        String uuid = r.getUuid();
-       if (checkMemory(uuid) ) {
-           super.save(r);
-        }
-    }
-
     public void clear() {
         Arrays.fill(storage, 0, size, null);
         size = 0;
@@ -32,9 +25,10 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return Arrays.copyOfRange(storage, 0, size);
     }
 
+    @Override
     protected boolean checkMemory(String uuid) {
         if (size == storage.length) {
-            throw new StorageException(uuid,uuid + "Нет свободной памяти!");
+            throw new StorageException(uuid, uuid + "Нет свободной памяти!");
         }
         return true;
     }
