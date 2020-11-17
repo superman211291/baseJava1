@@ -1,0 +1,22 @@
+package com.urise.webapp.storage;
+
+import com.urise.webapp.model.Resume;
+import org.junit.Assert;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class MapStorageTest extends AbstractStorageTest {
+
+    public MapStorageTest() {
+        super(new MapStorage());
+    }
+
+    @Test
+    public void getAll() {
+        Resume[] resumeExpected = storage.getAll();
+        Resume[] resumeActual = new Resume[]{resume1, resume2, resume3};
+        Assert.assertArrayEquals(resumeExpected, resumeActual);
+        Assert.a
+    }
+}

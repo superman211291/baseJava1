@@ -16,11 +16,6 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    public void delete(String uuid) {
-        super.delete(uuid);
-    }
-
-    @Override
     public Resume[] getAll() {
 //        Resume[] newResume = new Resume[listResume.size()];
 //        for (int i = 0; i < listResume.size(); i++) {
@@ -48,7 +43,7 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected Resume getResume(int index) {
+    protected Resume getResume(int index, String uuid) {
         return listResume.get(index);
     }
 
@@ -63,7 +58,7 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected void deleteResume(int index) {
+    protected void deleteResume(int index, String uuid) {
         listResume.remove(index);
     }
 
