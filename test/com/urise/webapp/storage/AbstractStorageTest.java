@@ -8,8 +8,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public abstract class AbstractStorageTest {
     protected final Storage storage;
     protected static final String UUID_1 = "uuid1";
@@ -32,6 +30,7 @@ public abstract class AbstractStorageTest {
         storage.save(resume2);
         storage.save(resume3);
     }
+
     @Test
     public void save() throws Exception {
         Resume resume = new Resume("dummy");
@@ -92,7 +91,6 @@ public abstract class AbstractStorageTest {
     public void saveExist() throws Exception {
         storage.save(new Resume(UUID_1));
     }
-
 
 
 }

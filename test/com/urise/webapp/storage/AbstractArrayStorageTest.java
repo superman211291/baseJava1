@@ -10,6 +10,7 @@ public abstract class AbstractArrayStorageTest extends AbstractStorageTest {
     public AbstractArrayStorageTest(Storage storage) {
         super(storage);
     }
+
     @Test(expected = StorageException.class)
     public void storageOverflow() throws Exception {
         int MAX_ELEMENT = AbstractArrayStorage.STORAGE_LIMIT;
@@ -23,8 +24,6 @@ public abstract class AbstractArrayStorageTest extends AbstractStorageTest {
         }
         storage.save(new Resume());
     }
-
-
 
 
 }

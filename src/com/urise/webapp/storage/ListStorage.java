@@ -28,7 +28,7 @@ public class ListStorage extends AbstractStorage {
 //        }
 //        return newResume;
         Resume[] resumes = new Resume[listResume.size()];
-        return  listResume.toArray(resumes);
+        return listResume.toArray(resumes);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ListStorage extends AbstractStorage {
     @Override
     protected int getIndex(String uuid) {
         for (int i = 0; i < listResume.size(); i++) {
-            if(uuid.equals(listResume.get(i).getUuid())){
+            if (uuid.equals(listResume.get(i).getUuid())) {
                 return i;
             }
         }
@@ -53,20 +53,19 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected void saveResume( int index, Resume r) {
+    protected void saveResume(int index, Resume r) {
         listResume.add(r);
     }
 
     @Override
     protected void updateResume(int index, Resume r) {
-        listResume.set(index,r);
+        listResume.set(index, r);
     }
 
     @Override
     protected void deleteResume(int index) {
         listResume.remove(index);
     }
-
 
 
 }
