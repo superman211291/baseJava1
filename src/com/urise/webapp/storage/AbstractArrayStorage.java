@@ -1,5 +1,6 @@
 package com.urise.webapp.storage;
 
+import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
@@ -12,9 +13,24 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
     protected int size = 0;
 
+    @Override
     public void clear() {
         Arrays.fill(storage, 0, size, null);
         size = 0;
+    }
+
+    @Override
+    public void save(Resume r) {
+        String uuid = r.getUuid();
+        if (checkMemory(uuid)) {
+            int index = getIndex(uuid);
+            if (index < 0) {
+                saveResume(index, r);
+                System.out.println(uuid + " сохранен!");
+            } else {
+                throw new ExistStorageException(uuid);
+            }
+        }
     }
 
     public int size() {
@@ -25,8 +41,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return Arrays.copyOfRange(storage, 0, size);
     }
 
-    @Override
-    protected boolean checkMemory(String uuid) {
+
+    private boolean checkMemory(String uuid) {
         if (size == storage.length) {
             throw new StorageException(uuid, uuid + "Нет свободной памяти!");
         }

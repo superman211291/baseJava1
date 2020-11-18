@@ -20,7 +20,6 @@ public abstract class AbstractStorage implements Storage {
     @Override
     public void save(Resume r) {
         String uuid = r.getUuid();
-        if (checkMemory(uuid)) {
             int index = getIndex(uuid);
             if (index < 0) {
                 saveResume(index, r);
@@ -28,7 +27,7 @@ public abstract class AbstractStorage implements Storage {
             } else {
                 throw new ExistStorageException(uuid);
             }
-        }
+
     }
 
     @Override
@@ -51,11 +50,6 @@ public abstract class AbstractStorage implements Storage {
             throw new NotExistStorageException(uuid);
         }
     }
-
-    protected boolean checkMemory(String uuid) {
-        return true;
-    }
-
 
     protected abstract int getIndex(String uuid);
 

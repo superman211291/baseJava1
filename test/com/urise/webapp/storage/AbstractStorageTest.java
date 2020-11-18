@@ -8,6 +8,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 public abstract class AbstractStorageTest {
     protected final Storage storage;
     protected static final String UUID_1 = "uuid1";
@@ -75,6 +78,15 @@ public abstract class AbstractStorageTest {
     @Test
     public void get() throws Exception {
         Assert.assertEquals(resume1, storage.get(UUID_1));
+    }
+
+    @Test
+    public void getAll() {
+        HashSet<Resume> resumeExpected = new HashSet<>(Arrays.asList(storage.getAll()));
+        HashSet<Resume> resumeActual = new HashSet<>(Arrays.asList(resume1, resume2, resume3));
+        Assert.assertEquals(3, storage.size());
+        Assert.assertEquals(resumeExpected, resumeActual);
+
     }
 
     @Test(expected = NotExistStorageException.class)
