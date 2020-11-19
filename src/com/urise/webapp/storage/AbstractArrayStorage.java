@@ -38,7 +38,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
     @Override
     protected Resume getResume(Object index) {
-            return storage[(Integer) index];
+        return storage[(Integer) index];
     }
 
     @Override
@@ -48,24 +48,24 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
             Integer ind = (Integer) index;
             storage[shiftElement(ind)] = r;
             size++;
-            } else {
-                throw new ExistStorageException(uuid);
-            }
+        } else {
+            throw new ExistStorageException(uuid);
+        }
 
 
     }
 
     @Override
     protected void updateResume(Object index, Resume r) {
-            storage[(Integer) index] = r;
+        storage[(Integer) index] = r;
 
     }
 
     @Override
     protected void deleteResume(Object index, String uuid) {
-            backspaceElement((Integer) index);
-            storage[size - 1] = null;
-            size--;
+        backspaceElement((Integer) index);
+        storage[size - 1] = null;
+        size--;
     }
 
     @Override
