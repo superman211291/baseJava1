@@ -23,7 +23,7 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     protected boolean chekIndex(Object index) {
-        return index!=null;
+        return index != null;
     }
 
     @Override

@@ -44,7 +44,7 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     protected boolean chekIndex(Object index) {
-         if(index!=null) {
+        if (index != null) {
             if (index instanceof Integer) {
                 Integer ind = (Integer) index;
                 return ind >= 0;

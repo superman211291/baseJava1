@@ -60,9 +60,9 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
     @Override
     protected void saveResume(Object index, Resume r) {
-            Integer ind = (Integer) index;
-            storage[shiftElement(ind)] = r;
-            size++;
+        Integer ind = (Integer) index;
+        storage[shiftElement(ind)] = r;
+        size++;
 
     }
 
