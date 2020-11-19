@@ -10,34 +10,39 @@ public class MapStorage extends AbstractStorage {
     private final Map<String, Resume> mapResumes = new HashMap<>();
 
     @Override
-    protected int getIndex(String uuid) {
+    protected Object getIndex(String uuid) {
         String[] uuids = new String[size()];
         mapResumes.keySet().toArray(uuids);
         for (String uuid1 : uuids) {
             if (uuid1.equals(uuid)) {
-                return 0;
+                return uuid;
             }
         }
-        return -1;
+        return null;
     }
 
     @Override
-    protected Resume getResume(int index, String uuid) {
+    protected boolean chekIndex(Object index) {
+        return index!=null;
+    }
+
+    @Override
+    protected Resume getResume(Object index, String uuid) {
         return mapResumes.get(uuid);
     }
 
     @Override
-    protected void saveResume(int index, Resume r) {
+    protected void saveResume(Object index, Resume r) {
         mapResumes.put(r.getUuid(), r);
     }
 
     @Override
-    protected void updateResume(int index, Resume r) {
+    protected void updateResume(Object index, Resume r) {
         mapResumes.replace(r.getUuid(), r);
     }
 
     @Override
-    protected void deleteResume(int index, String uuid) {
+    protected void deleteResume(Object index, String uuid) {
         mapResumes.remove(uuid);
     }
 

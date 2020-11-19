@@ -23,8 +23,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     public void save(Resume r) {
         String uuid = r.getUuid();
         if (checkMemory(uuid)) {
-            int index = getIndex(uuid);
-            if (index < 0) {
+            Object index = getIndex(uuid);
+            if (!chekIndex(index)) {
                 saveResume(index, r);
                 System.out.println(uuid + " сохранен!");
             } else {
@@ -51,26 +51,45 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
 
     @Override
-    protected Resume getResume(int index, String uuid) {
-        return storage[index];
+    protected Resume getResume(Object index, String uuid) {
+        if (chekIndex(index)) {
+            return storage[(Integer) index];
+        }
+        return null;
     }
 
     @Override
-    protected void saveResume(int index, Resume r) {
-        storage[shiftElement(index)] = r;
-        size++;
+    protected void saveResume(Object index, Resume r) {
+            Integer ind = (Integer) index;
+            storage[shiftElement(ind)] = r;
+            size++;
+
     }
 
     @Override
-    protected void updateResume(int index, Resume r) {
-        storage[index] = r;
+    protected void updateResume(Object index, Resume r) {
+        if (chekIndex(index)) {
+            storage[(Integer) index] = r;
+        }
     }
 
     @Override
-    protected void deleteResume(int index, String uuid) {
-        backspaceElement(index);
-        storage[size - 1] = null;
-        size--;
+    protected void deleteResume(Object index, String uuid) {
+        if (chekIndex(index)) {
+            backspaceElement((Integer) index);
+            storage[size - 1] = null;
+            size--;
+        }
+    }
+
+    @Override
+    protected boolean chekIndex(Object index) {
+        if (index != null) {
+            Integer ind = (Integer) index;
+            return ind >= 0;
+
+        }
+        return false;
     }
 
     protected abstract int shiftElement(int index);

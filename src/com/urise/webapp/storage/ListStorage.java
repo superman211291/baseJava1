@@ -33,7 +33,7 @@ public class ListStorage extends AbstractStorage {
 
 
     @Override
-    protected int getIndex(String uuid) {
+    protected Object getIndex(String uuid) {
         for (int i = 0; i < listResume.size(); i++) {
             if (uuid.equals(listResume.get(i).getUuid())) {
                 return i;
@@ -43,23 +43,34 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected Resume getResume(int index, String uuid) {
-        return listResume.get(index);
+    protected boolean chekIndex(Object index) {
+         if(index!=null) {
+            if (index instanceof Integer) {
+                Integer ind = (Integer) index;
+                return ind >= 0;
+            }
+        }
+        return false;
     }
 
     @Override
-    protected void saveResume(int index, Resume r) {
+    protected Resume getResume(Object index, String uuid) {
+        return listResume.get((Integer) index);
+    }
+
+    @Override
+    protected void saveResume(Object index, Resume r) {
         listResume.add(r);
     }
 
     @Override
-    protected void updateResume(int index, Resume r) {
-        listResume.set(index, r);
+    protected void updateResume(Object index, Resume r) {
+        listResume.set((Integer) index, r);
     }
 
     @Override
-    protected void deleteResume(int index, String uuid) {
-        listResume.remove(index);
+    protected void deleteResume(Object index, String uuid) {
+        listResume.remove((Integer) index);
     }
 
 
