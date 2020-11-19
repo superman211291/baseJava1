@@ -43,18 +43,13 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected boolean chekIndex(Object index) {
-        if (index != null) {
-            if (index instanceof Integer) {
-                Integer ind = (Integer) index;
-                return ind >= 0;
-            }
-        }
-        return false;
+    protected boolean checkIndex(Object index) {
+        Integer ind = (Integer) index;
+        return ind >= 0;
     }
 
     @Override
-    protected Resume getResume(Object index, String uuid) {
+    protected Resume getResume(Object index) {
         return listResume.get((Integer) index);
     }
 

@@ -19,20 +19,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         size = 0;
     }
 
-    @Override
-    public void save(Resume r) {
-        String uuid = r.getUuid();
-        if (checkMemory(uuid)) {
-            Object index = getIndex(uuid);
-            if (!chekIndex(index)) {
-                saveResume(index, r);
-                System.out.println(uuid + " сохранен!");
-            } else {
-                throw new ExistStorageException(uuid);
-            }
-        }
-    }
-
     public int size() {
         return size;
     }
@@ -51,39 +37,39 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
 
     @Override
-    protected Resume getResume(Object index, String uuid) {
-        if (chekIndex(index)) {
+    protected Resume getResume(Object index) {
             return storage[(Integer) index];
-        }
-        return null;
     }
 
     @Override
     protected void saveResume(Object index, Resume r) {
-        Integer ind = (Integer) index;
-        storage[shiftElement(ind)] = r;
-        size++;
+        String uuid = r.getUuid();
+        if (checkMemory(uuid)) {
+            Integer ind = (Integer) index;
+            storage[shiftElement(ind)] = r;
+            size++;
+            } else {
+                throw new ExistStorageException(uuid);
+            }
+
 
     }
 
     @Override
     protected void updateResume(Object index, Resume r) {
-        if (chekIndex(index)) {
             storage[(Integer) index] = r;
-        }
+
     }
 
     @Override
     protected void deleteResume(Object index, String uuid) {
-        if (chekIndex(index)) {
             backspaceElement((Integer) index);
             storage[size - 1] = null;
             size--;
-        }
     }
 
     @Override
-    protected boolean chekIndex(Object index) {
+    protected boolean checkIndex(Object index) {
         if (index != null) {
             Integer ind = (Integer) index;
             return ind >= 0;

@@ -10,7 +10,7 @@ public abstract class AbstractStorage implements Storage {
     @Override
     public void update(Resume r) {
         Object index = getIndex(r.getUuid());
-        if (chekIndex(index)) {
+        if (checkIndex(index)) {
             updateResume(index, r);
         } else {
             throw new NotExistStorageException(r.getUuid());
@@ -21,7 +21,7 @@ public abstract class AbstractStorage implements Storage {
     public void save(Resume r) {
         String uuid = r.getUuid();
         Object index = getIndex(uuid);
-        if (!chekIndex(index)) {
+        if (!checkIndex(index)) {
             saveResume(index, r);
             System.out.println(uuid + " сохранен!");
         } else {
@@ -33,8 +33,8 @@ public abstract class AbstractStorage implements Storage {
     @Override
     public Resume get(String uuid) {
         Object index = getIndex(uuid);
-        if (chekIndex(index)) {
-            return getResume(index, uuid);
+        if (checkIndex(index)) {
+            return getResume(index);
         }
 
         throw new NotExistStorageException(uuid);
@@ -43,7 +43,7 @@ public abstract class AbstractStorage implements Storage {
     @Override
     public void delete(String uuid) {
         Object index = getIndex(uuid);
-        if (chekIndex(index)) {
+        if (checkIndex(index)) {
             deleteResume(index, uuid);
             System.out.println(uuid + " удален!");
         } else {
@@ -53,9 +53,9 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract Object getIndex(String uuid);
 
-    protected abstract boolean chekIndex(Object index);
+    protected abstract boolean checkIndex(Object index);
 
-    protected abstract Resume getResume(Object index, String uuid);
+    protected abstract Resume getResume(Object index);
 
     protected abstract void saveResume(Object index, Resume r);
 

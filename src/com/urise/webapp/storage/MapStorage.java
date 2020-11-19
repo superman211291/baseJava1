@@ -11,24 +11,17 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     protected Object getIndex(String uuid) {
-        String[] uuids = new String[size()];
-        mapResumes.keySet().toArray(uuids);
-        for (String uuid1 : uuids) {
-            if (uuid1.equals(uuid)) {
-                return uuid;
-            }
-        }
-        return null;
+        return uuid;
     }
 
     @Override
-    protected boolean chekIndex(Object index) {
-        return index != null;
+    protected boolean checkIndex(Object index) {
+        return mapResumes.containsKey(index);
     }
 
     @Override
-    protected Resume getResume(Object index, String uuid) {
-        return mapResumes.get(uuid);
+    protected Resume getResume(Object index) {
+        return mapResumes.get(index.toString());
     }
 
     @Override
