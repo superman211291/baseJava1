@@ -83,7 +83,7 @@ public abstract class AbstractStorageTest {
 
     @Test
     public void getAll() {
-        Set<Resume> resumeExpected = new HashSet<>(storage.getAllSorted());
+        Set<Resume> resumeExpected = new HashSet<>(storage.getAll());
         Set<Resume> resumeActual = new HashSet<>(Arrays.asList(resume1, resume2, resume3));
         Assert.assertEquals(3, storage.size());
         Assert.assertEquals(resumeExpected, resumeActual);
