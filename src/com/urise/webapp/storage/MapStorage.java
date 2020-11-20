@@ -35,8 +35,8 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
-    protected void deleteResume(Object index) {
-        mapResumes.remove(index);
+    protected void deleteResume(Object index, String uuid) {
+        mapResumes.remove(uuid);
     }
 
     @Override

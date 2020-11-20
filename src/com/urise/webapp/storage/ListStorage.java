@@ -16,10 +16,14 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    public List<Resume> getAllSorted() {
-        List<Resume> resumes = listResume.subList(0,size());
-        resumes.sort(RESUME_COMPARATOR);
-        return  resumes;
+    public Resume[] getAll() {
+//        Resume[] newResume = new Resume[listResume.size()];
+//        for (int i = 0; i < listResume.size(); i++) {
+//            newResume[i] = listResume.get(i);
+//        }
+//        return newResume;
+        Resume[] resumes = new Resume[listResume.size()];
+        return listResume.toArray(resumes);
     }
 
     @Override
@@ -29,7 +33,7 @@ public class ListStorage extends AbstractStorage {
 
 
     @Override
-    protected Integer getIndex(String uuid) {
+    protected Object getIndex(String uuid) {
         for (int i = 0; i < listResume.size(); i++) {
             if (uuid.equals(listResume.get(i).getUuid())) {
                 return i;
@@ -60,9 +64,8 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected void deleteResume(Object index) {
-        int ind = (Integer) index;
-        listResume.remove(ind);
+    protected void deleteResume(Object index, String uuid) {
+        listResume.remove((Integer) index);
     }
 
 
