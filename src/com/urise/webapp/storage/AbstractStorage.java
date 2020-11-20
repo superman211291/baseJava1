@@ -44,7 +44,7 @@ public abstract class AbstractStorage implements Storage {
     public void delete(String uuid) {
         Object index = getIndex(uuid);
         if (checkIndex(index)) {
-            deleteResume(index, uuid);
+            deleteResume(index);
             System.out.println(uuid + " удален!");
         } else {
             throw new NotExistStorageException(uuid);
@@ -61,7 +61,7 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract void updateResume(Object index, Resume r);
 
-    protected abstract void deleteResume(Object index, String uuid);
+    protected abstract void deleteResume(Object index);
 
 
 }

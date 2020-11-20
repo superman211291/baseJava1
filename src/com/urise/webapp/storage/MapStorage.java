@@ -10,7 +10,7 @@ public class MapStorage extends AbstractStorage {
     private final Map<String, Resume> mapResumes = new HashMap<>();
 
     @Override
-    protected Object getIndex(String uuid) {
+    protected String getIndex(String uuid) {
         return uuid;
     }
 
@@ -35,8 +35,8 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
-    protected void deleteResume(Object index, String uuid) {
-        mapResumes.remove(uuid);
+    protected void deleteResume(Object index) {
+        mapResumes.remove(index);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.urise.webapp.storage;
 
-import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
@@ -48,8 +47,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
             Integer ind = (Integer) index;
             storage[shiftElement(ind)] = r;
             size++;
-        } else {
-            throw new ExistStorageException(uuid);
         }
 
 
@@ -62,7 +59,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    protected void deleteResume(Object index, String uuid) {
+    protected void deleteResume(Object index) {
         backspaceElement((Integer) index);
         storage[size - 1] = null;
         size--;
