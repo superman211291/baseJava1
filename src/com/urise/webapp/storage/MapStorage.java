@@ -2,15 +2,17 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MapStorage extends AbstractStorage {
 
-    private final Map<Object, Resume> mapResumes = new HashMap<>();
-
+    private final Map<String, Resume> mapResumes = new HashMap<>();
 
     @Override
-    protected Object getIndex(String uuid) {
+    protected String getIndex(String uuid) {
         return uuid;
     }
 
@@ -21,17 +23,17 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     protected Resume getResume(Object index) {
-        return mapResumes.get(index);
+        return mapResumes.get(index.toString());
     }
 
     @Override
     protected void saveResume(Object index, Resume r) {
-        mapResumes.put(index, r);
+        mapResumes.put(r.getUuid(), r);
     }
 
     @Override
     protected void updateResume(Object index, Resume r) {
-        mapResumes.replace(index, r);
+        mapResumes.replace(r.getUuid(), r);
     }
 
     @Override
