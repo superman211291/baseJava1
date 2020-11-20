@@ -6,9 +6,7 @@ public class MapStorageTest extends AbstractStorageTest {
         super(new MapStorage());
     }
 
-    public MapStorageTest(HashMapStorage hashMapStorage) {
-        super(hashMapStorage);
-    }
+
 
 
 //        if(!resumeExpected.retainAll(resumeActual)){

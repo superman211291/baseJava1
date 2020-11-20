@@ -45,8 +45,10 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
-    public List<Resume> getAll() {
-        return Arrays.asList(mapResumes.values().toArray(new Resume[0]).clone());
+    public List<Resume> getAllSorted() {
+        List<Resume> resumes = Arrays.asList(mapResumes.values().toArray(new Resume[0]).clone());
+        resumes.sort(RESUME_COMPARATOR);
+        return resumes;
     }
 
     @Override

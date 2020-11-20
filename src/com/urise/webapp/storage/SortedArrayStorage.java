@@ -3,6 +3,7 @@ package com.urise.webapp.storage;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
 
@@ -24,4 +25,9 @@ public class SortedArrayStorage extends AbstractArrayStorage {
         return Arrays.binarySearch(storage, 0, size, searchKey,RESUME_COMPARATOR);
     }
 
+    @Override
+    public List<Resume> getAllSorted() {
+            return Arrays.asList(storage);
+
+    }
 }

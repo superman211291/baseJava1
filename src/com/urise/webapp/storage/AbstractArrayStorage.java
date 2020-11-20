@@ -23,8 +23,10 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return size;
     }
 
-    public List<Resume> getAll() {
-        return Arrays.asList(Arrays.copyOfRange(storage,0,size));
+    public List<Resume> getAllSorted() {
+        List<Resume> resumes = Arrays.asList(Arrays.copyOfRange(storage,0,size));
+        resumes.sort(RESUME_COMPARATOR);
+        return resumes;
     }
 
 
