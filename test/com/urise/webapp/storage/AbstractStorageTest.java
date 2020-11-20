@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 public abstract class AbstractStorageTest {
     protected final Storage storage;
@@ -82,8 +83,8 @@ public abstract class AbstractStorageTest {
 
     @Test
     public void getAll() {
-        HashSet<Resume> resumeExpected = new HashSet<>(Arrays.asList(storage.getAll()));
-        HashSet<Resume> resumeActual = new HashSet<>(Arrays.asList(resume1, resume2, resume3));
+        Set<Resume> resumeExpected = new HashSet<>(storage.getAll());
+        Set<Resume> resumeActual = new HashSet<>(Arrays.asList(resume1, resume2, resume3));
         Assert.assertEquals(3, storage.size());
         Assert.assertEquals(resumeExpected, resumeActual);
 
