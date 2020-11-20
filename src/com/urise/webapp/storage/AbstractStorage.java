@@ -11,7 +11,11 @@ public abstract class AbstractStorage implements Storage {
     protected static final Comparator<Resume> RESUME_COMPARATOR = new Comparator<Resume>() {
         @Override
         public int compare(Resume o1, Resume o2) {
-            return o1.getUuid().compareTo(o2.getUuid());
+            int ind = o1.getFullName().compareTo(o2.getFullName());
+            if(ind == 0){
+                ind = o1.getUuid().compareTo(o2.getUuid());
+            }
+            return ind;
         }
     };
 

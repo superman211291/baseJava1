@@ -25,6 +25,10 @@ public class Resume  {
         this.uuid = uuid;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
     public String getUuid() {
         return uuid;
     }
