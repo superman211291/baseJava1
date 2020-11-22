@@ -17,7 +17,7 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     public List<Resume> getAll() {
-        return  listResume.subList(0,size());
+        return listResume.subList(0, size());
     }
 
     @Override

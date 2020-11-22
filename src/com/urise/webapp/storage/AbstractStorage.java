@@ -70,7 +70,7 @@ public abstract class AbstractStorage implements Storage {
     public List<Resume> getAllSorted() {
         List<Resume> resumes = getAll();
         resumes.sort(RESUME_COMPARATOR);
-        return  resumes;
+        return resumes;
     }
 
     protected abstract Object getIndex(String uuid);
@@ -85,7 +85,7 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract void deleteResume(Object index);
 
-    protected abstract List<Resume> getAll ();
+    protected abstract List<Resume> getAll();
 
 
 }
