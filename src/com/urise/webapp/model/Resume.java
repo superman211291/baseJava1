@@ -1,23 +1,17 @@
 package com.urise.webapp.model;
 
-import java.util.UUID;
-
 /**
  * Initial resume class
  */
-public class Resume  {
+public class Resume {
 
     // Unique identifier
     private final String uuid;
 
     private String fullName;
 
-    public Resume() {
-        this(UUID.randomUUID().toString());
-    }
-
     public Resume(String uuid, String fullName) {
-        this.uuid = uuid;
+        this(uuid);
         this.fullName = fullName;
     }
 
@@ -41,7 +35,7 @@ public class Resume  {
 
         Resume resume = (Resume) o;
 
-        return uuid.equals(resume.uuid);
+        return fullName.equals(resume.getFullName()) && uuid.equals(resume.uuid) ;
     }
 
     @Override

@@ -16,13 +16,13 @@ public abstract class AbstractArrayStorageTest extends AbstractStorageTest {
         int MAX_ELEMENT = AbstractArrayStorage.STORAGE_LIMIT;
         try {
             for (int i = storage.size(); i < MAX_ELEMENT; i++) {
-                storage.save(new Resume());
+                storage.save(new Resume("uuids" + i));
             }
 //            storage.save(new Resume());
         } catch (StorageException ex) {
             Assert.fail("Переполнение произошло раньше!");
         }
-        storage.save(new Resume());
+        storage.save(new Resume("dummy"));
     }
 
 

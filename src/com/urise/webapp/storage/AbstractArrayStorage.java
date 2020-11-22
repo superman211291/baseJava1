@@ -23,13 +23,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return size;
     }
 
-    public List<Resume> getAllSorted() {
-        List<Resume> resumes = Arrays.asList(Arrays.copyOfRange(storage,0,size));
-        resumes.sort(RESUME_COMPARATOR);
-        return resumes;
-    }
-
-
     private boolean checkMemory(String uuid) {
         if (size == storage.length) {
             throw new StorageException(uuid, uuid + "Нет свободной памяти!");
@@ -76,6 +69,11 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
         }
         return false;
+    }
+
+    @Override
+    public List<Resume> getAll() {
+        return Arrays.asList(Arrays.copyOfRange(storage, 0, size));
     }
 
     protected abstract int shiftElement(int index);

@@ -1,9 +1,11 @@
 package com.urise.webapp.storage;
 
+import com.urise.webapp.model.Resume;
+
 public class HashMapStorage extends MapStorage {
     @Override
-    protected Integer getIndex(String fullName) {
-        return fullName.hashCode();
+    protected String getIndex(Resume r) {
+        return r.getClass().toString();
     }
 
 }
