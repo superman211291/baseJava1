@@ -6,7 +6,7 @@ import java.util.*;
 
 public class MapStorage extends AbstractStorage {
 
-    private final Map<Object, Resume> mapResumes = new HashMap<>();
+    protected final Map<Object, Resume> mapResumes = new HashMap<>();
 
 
     @Override

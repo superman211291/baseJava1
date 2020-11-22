@@ -44,7 +44,7 @@ public abstract class AbstractStorageTest {
         Assert.assertEquals(resume, storage.get(resume.getUuid()));
     }
 
-    @Test
+    @Test(expected = NotExistStorageException.class)
     public void delete() {
 
         try {
@@ -53,7 +53,7 @@ public abstract class AbstractStorageTest {
             System.out.println(ex.getMessage());
             Assert.fail();
         }
-
+        storage.get(UUID_2);
     }
 
     @Test
@@ -78,7 +78,8 @@ public abstract class AbstractStorageTest {
 
     @Test
     public void get() throws Exception {
-        Assert.assertEquals(resume1, storage.get(UUID_1));
+        Resume actual = storage.get(UUID_1);
+        Assert.assertEquals(resume1,actual );
     }
 
     @Test

@@ -6,6 +6,8 @@ package com.urise.webapp.model;
 public class Resume {
 
     // Unique identifier
+    private static final String DEFAULT_FULL_NAME = "DEFAULT";
+
     private final String uuid;
 
     private String fullName;
@@ -17,6 +19,7 @@ public class Resume {
 
     public Resume(String uuid) {
         this.uuid = uuid;
+        this.fullName = DEFAULT_FULL_NAME;
     }
 
     public String getFullName() {
