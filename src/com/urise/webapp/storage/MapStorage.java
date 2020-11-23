@@ -2,12 +2,7 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
-import java.util.*;
-
-public class MapStorage extends AbstractStorage {
-
-    protected final Map<Object, Resume> mapResumes = new HashMap<>();
-
+public class MapStorage extends AbstractMapStorage {
 
     @Override
     protected Object getIndex(String uuid) {
@@ -39,18 +34,4 @@ public class MapStorage extends AbstractStorage {
         mapResumes.remove(index);
     }
 
-    @Override
-    public void clear() {
-        mapResumes.clear();
-    }
-
-
-    public List<Resume> getAll() {
-        return Arrays.asList(mapResumes.values().toArray(new Resume[0]).clone());
-    }
-
-    @Override
-    public int size() {
-        return mapResumes.size();
-    }
 }
