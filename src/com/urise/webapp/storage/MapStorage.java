@@ -21,12 +21,12 @@ public class MapStorage extends AbstractMapStorage {
 
     @Override
     protected void saveResume(Object index, Resume r) {
-        mapResumes.put(index, r);
+        mapResumes.put((String) index, r);
     }
 
     @Override
     protected void updateResume(Object index, Resume r) {
-        mapResumes.replace(index, r);
+        mapResumes.replace((String) index, r);
     }
 
     @Override
