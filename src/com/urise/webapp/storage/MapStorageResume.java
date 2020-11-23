@@ -11,14 +11,12 @@ public class MapStorageResume extends AbstractMapStorage {
 
     @Override
     protected boolean checkIndex(Object index) {
-        Resume r = (Resume) index;
-        return mapResumes.containsValue(r);
+        return index != null;
     }
 
     @Override
     protected Resume getResume(Object index) {
-        Resume r = (Resume) index;
-        return mapResumes.get(r.getUuid());
+        return (Resume) index;
     }
 
     @Override
