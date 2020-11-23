@@ -10,16 +10,15 @@ public class Resume {
 
     private final String uuid;
 
-    private String fullName;
+    private final String fullName;
 
     public Resume(String uuid, String fullName) {
-        this(uuid);
+        this.uuid = uuid;
         this.fullName = fullName;
     }
 
     public Resume(String uuid) {
-        this.uuid = uuid;
-        this.fullName = DEFAULT_FULL_NAME;
+        this(uuid,DEFAULT_FULL_NAME);
     }
 
     public String getFullName() {
