@@ -18,6 +18,14 @@ public class Resume {
 
     private Map<SectionType,ContentSection> section;
 
+    public Resume(String uuid, String fullName,
+                  Map<ContactsType, String> contacts,
+                  Map<SectionType, ContentSection> section) {
+        this(uuid, fullName);
+        this.contacts = contacts;
+        this.section = section;
+    }
+
     public Resume(String uuid, String fullName) {
         this.uuid = uuid;
         this.fullName = fullName;
@@ -43,7 +51,10 @@ public class Resume {
 
         Resume resume = (Resume) o;
 
-        return fullName.equals(resume.getFullName()) && uuid.equals(resume.uuid) ;
+        return fullName.equals(resume.getFullName()) &&
+                uuid.equals(resume.uuid)  &&
+                contacts.equals(resume.contacts) &&
+                section.equals(resume.section);
     }
 
     @Override
