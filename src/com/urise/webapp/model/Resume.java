@@ -1,5 +1,7 @@
 package com.urise.webapp.model;
 
+import java.util.Map;
+
 /**
  * Initial resume class
  */
@@ -11,6 +13,10 @@ public class Resume {
     private final String uuid;
 
     private final String fullName;
+
+    private Map<ContactsType,String> contacts;
+
+    private Map<SectionType,ContentSection> section;
 
     public Resume(String uuid, String fullName) {
         this.uuid = uuid;
