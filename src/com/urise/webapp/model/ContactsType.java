@@ -5,12 +5,17 @@ public enum ContactsType {
     PHONE("Телефон"),
     EMAIL("Почта"),
     SKYPE("Скайп"),
-    LINK("Ссылки");
+    LINK();
 
     private String title;
 
+
+
     ContactsType(String title){
         this.title = title;
+    }
+
+    ContactsType(){
     }
 
     public String getTitle() {

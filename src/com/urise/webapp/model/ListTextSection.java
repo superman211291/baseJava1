@@ -11,6 +11,15 @@ public class ListTextSection implements ContentSection {
     }
 
     public void setTextSections(ArrayList<String> textSections) {
+        for (int i = 0; i < textSections.size(); i++) {
+            textSections.set(i, "- " + textSections.get(i) + "\n");
+        }
         this.textSections = textSections;
+    }
+
+    @Override
+    public String toString() {
+
+        return textSections.toString();
     }
 }

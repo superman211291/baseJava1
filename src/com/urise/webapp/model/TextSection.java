@@ -11,4 +11,9 @@ public class TextSection implements ContentSection {
     public void setTextField(String textField) {
         this.textField = textField;
     }
+
+    @Override
+    public String toString() {
+        return textField ;
+    }
 }

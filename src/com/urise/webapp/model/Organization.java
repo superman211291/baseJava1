@@ -6,9 +6,11 @@ public class Organization {
 
     private String name;
 
-    private LocalDate workTime;
+    private LocalDate workTimeFrom;
 
-    private String position;
+    private LocalDate workTimeTo;
+
+    private String objective;
 
     private String description;
 
@@ -20,27 +22,47 @@ public class Organization {
         this.name = name;
     }
 
-    public LocalDate getWorkTime() {
-        return workTime;
+    public LocalDate getWorkTimeFrom() {
+        return workTimeFrom;
     }
 
-    public void setWorkTime(LocalDate workTime) {
-        this.workTime = workTime;
+    public LocalDate getWorkTimeTo() {
+        return workTimeTo;
     }
 
-    public String getPosition() {
-        return position;
+    public void setWorkTime(LocalDate from, LocalDate to) {
+
+        this.workTimeFrom = from;
+
+        if (to.isEqual(LocalDate.now()))
+        this.workTimeTo = null;
+
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public String getObjective() {
+        return objective;
+    }
+
+    public void setObjective(String objective) {
+        this.objective = objective;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String description) {this.description = description; }
+
+    @Override
+    public String toString() {
+        String wTT;
+        if (workTimeTo == null){
+            wTT = "Сейчас";
+        } else{
+            wTT = workTimeFrom.toString();
+        }
+        return  name + '\n' +
+                workTimeFrom.toString() + "-" + ", workTimeTo=" + wTT + "   " + objective + '\n' +
+                description + '\n';
     }
 }

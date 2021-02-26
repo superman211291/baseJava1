@@ -13,4 +13,9 @@ public class ListOrganization implements ContentSection {
     public void setOrganizations(ArrayList<Organization> organizations) {
         this.organizations = organizations;
     }
+
+    @Override
+    public String toString() {
+        return organizations.toString();
+    }
 }

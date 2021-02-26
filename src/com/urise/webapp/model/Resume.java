@@ -64,7 +64,14 @@ public class Resume {
 
     @Override
     public String toString() {
-        return uuid;
+        return fullName + "\n" +
+                ContactsType.PHONE.getTitle() + " " + contacts.get(ContactsType.PHONE).toString() + "\n" +
+                ContactsType.SKYPE.getTitle() + " " + contacts.get(ContactsType.SKYPE).toString() + "\n" +
+                ContactsType.EMAIL.getTitle() + " " + contacts.get(ContactsType.EMAIL).toString() + "\n" +
+                ContactsType.LINK.getTitle() + " " + contacts.get(ContactsType.LINK).toString() + "\n" +
+                "----------------------------------------------------------------------------------" + "\n" +
+                SectionType.OBJECTIVE.getTitle() + " " + section.get(SectionType.OBJECTIVE)
+                ;
     }
 
 }
