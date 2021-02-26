@@ -14,6 +14,8 @@ public class Organization {
 
     private String description;
 
+    private String wTT;
+
     public String getName() {
         return name;
     }
@@ -33,9 +35,13 @@ public class Organization {
     public void setWorkTime(LocalDate from, LocalDate to) {
 
         this.workTimeFrom = from;
+        this.workTimeTo = to;
 
         if (to.isEqual(LocalDate.now()))
-        this.workTimeTo = null;
+        wTT = "Сейчас";
+        else{
+            wTT = to.toString();
+        }
 
     }
 
@@ -51,18 +57,22 @@ public class Organization {
         return description;
     }
 
-    public void setDescription(String description) {this.description = description; }
+    public void setDescription(String description) {
+        this.description = description;
+
+    }
 
     @Override
     public String toString() {
-        String wTT;
-        if (workTimeTo == null){
-            wTT = "Сейчас";
-        } else{
-            wTT = workTimeFrom.toString();
+
+        String descr = description;
+        if (description == null){
+            descr = "";
         }
+
+
         return  name + '\n' +
-                workTimeFrom.toString() + "-" + ", workTimeTo=" + wTT + "   " + objective + '\n' +
-                description + '\n';
+                workTimeFrom.toString() + " - " + wTT + "   " + objective + '\n' +
+                descr + '\n';
     }
 }

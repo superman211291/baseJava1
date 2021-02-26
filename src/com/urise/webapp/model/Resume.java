@@ -65,13 +65,17 @@ public class Resume {
     @Override
     public String toString() {
         return fullName + "\n" +
-                ContactsType.PHONE.getTitle() + " " + contacts.get(ContactsType.PHONE).toString() + "\n" +
-                ContactsType.SKYPE.getTitle() + " " + contacts.get(ContactsType.SKYPE).toString() + "\n" +
-                ContactsType.EMAIL.getTitle() + " " + contacts.get(ContactsType.EMAIL).toString() + "\n" +
-                ContactsType.LINK.getTitle() + " " + contacts.get(ContactsType.LINK).toString() + "\n" +
+                ContactsType.PHONE.getTitle() + " " + contacts.get(ContactsType.PHONE) + "\n" +
+                ContactsType.SKYPE.getTitle() + " " + contacts.get(ContactsType.SKYPE) + "\n" +
+                ContactsType.EMAIL.getTitle() + " " + contacts.get(ContactsType.EMAIL) + "\n" +
+                " " + contacts.get(ContactsType.LINK) + "\n" +
                 "----------------------------------------------------------------------------------" + "\n" +
-                SectionType.OBJECTIVE.getTitle() + " " + section.get(SectionType.OBJECTIVE)
-                ;
+                SectionType.OBJECTIVE.getTitle() + "\n" + section.get(SectionType.OBJECTIVE).toString() + "\n" +
+                SectionType.PERSONAL.getTitle()  + "\n" + section.get(SectionType.PERSONAL).toString() + "\n" +
+                SectionType.ACHIEVEMENT.getTitle() + "\n" + section.get(SectionType.ACHIEVEMENT).toString() + "\n" +
+                SectionType.QUALIFICATIONS.getTitle()  + "\n" + section.get(SectionType.QUALIFICATIONS).toString() + "\n" +
+                SectionType.EXPERIENCE.getTitle() + "\n" + section.get(SectionType.EXPERIENCE).toString() + "\n" +
+                SectionType.EDUCATIONS.getTitle() + "\n" + section.get(SectionType.EDUCATIONS).toString() + "\n";
     }
 
 }
